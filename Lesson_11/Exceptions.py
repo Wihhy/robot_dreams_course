@@ -1,10 +1,9 @@
 import datetime
-import inspect
 
 
 def name_and_time(input_func):
     def inside_func():
-        print(f'The function {input_func.__name__} was called at {datetime.datetime.now()}')
+        print(f'The function "{input_func.__name__}" was called at {datetime.datetime.now()}')
         input_func()
 
     return inside_func
@@ -12,16 +11,27 @@ def name_and_time(input_func):
 
 @name_and_time
 def printik():
-    print('im inside the function')
+    print('Im inside the function')
 
 
 printik()
+
+print()
 
 
 class MyCustomException(Exception):
 
     def __init__(self):
         print('Custom exception is occured')
+
+
+try:
+    print('Before exception')
+    raise MyCustomException
+except MyCustomException:
+    print('After exception')
+
+print()
 
 
 class Selection:
@@ -37,6 +47,11 @@ class Selection:
         print('==========')
 
 
+with Selection():
+    print('Select it')
+
+print()
+
 try:
     print('=' * 10)
     print('Doing something very important')
@@ -49,16 +64,3 @@ print()
 
 with Selection() as select:
     print('important')
-
-print()
-
-try:
-    print('Before exception')
-    raise MyCustomException
-except MyCustomException:
-    print('After exception')
-
-print()
-
-with Selection():
-    print('Select it')
