@@ -1,10 +1,11 @@
 import json
 
+with open(file='contacts.json') as contacts_json:
+    contacts_dict = json.load(contacts_json)
+
 while True:
     interaction = input('Here is available commands to use:\n'
                         '"add", "delete", "stats", "list", "show".\n')
-    with open(file='contacts.json') as contacts_json:
-        contacts_dict = json.load(contacts_json)
     match interaction:
         case 'add':
             contact_name = input('Type contact name please:\n')
