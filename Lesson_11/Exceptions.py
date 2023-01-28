@@ -2,10 +2,9 @@ import datetime
 
 
 def name_and_time(input_func):
-    def inside_func():
+    def inside_func(*args, **kwargs):
         print(f'The function "{input_func.__name__}" was called at {datetime.datetime.now()}')
-        input_func()
-
+        return input_func(*args, **kwargs)
     return inside_func
 
 
@@ -44,7 +43,10 @@ class Selection:
         return None
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_val:
+            print(exc_val)
         print('==========')
+        return True
 
 
 with Selection():
