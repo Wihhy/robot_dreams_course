@@ -1,11 +1,11 @@
-# n = int(input())
+n = int(input('What number would you like to get? '))
 
 
-def fibo(n):
+def fibo(num=n):
     result = 1
-    if n > 2:
-        result = fibo(n-1) + fibo(n-2)
+    if num > 2:
+        result = fibo(num-1) + fibo(num-2)
     return result
 
 
-print(fibo(100))
+print(fibo(n))
