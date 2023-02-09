@@ -3,11 +3,11 @@ import re
 
 
 def validator(number):
-    if re.search(r'\+380\d{9}$', number):
+    if re.fullmatch(r'\+380\d{9}$', number):
         return True
-    elif re.search(r'380\d{9}$', number):
+    elif re.fullmatch(r'380\d{9}$', number):
         return True
-    elif re.search(r'0\d{9}$', number):
+    elif re.fullmatch(r'0\d{9}$', number):
         return True
     else:
         return False
