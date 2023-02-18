@@ -1,10 +1,6 @@
 class MyStr(str):
-    def __init__(self, string):
-        super().__init__()
-        self.string = string
-
     def __str__(self):
-        return self.string.upper()
+        return self.upper()
 
 
 my_str = MyStr('test')
@@ -13,11 +9,11 @@ print(my_str)
 
 class User:
     def __init__(self, name):
-        self.name = name.lower()
+        self.name = name
 
     def __eq__(self, other):
         try:
-            if self.name == other.name:
+            if self.name.lower() == other.name.lower():
                 return True
             else:
                 return False
