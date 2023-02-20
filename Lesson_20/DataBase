@@ -1,0 +1,18 @@
+
+CREATE TABLE IF NOT EXISTS HomeWork(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL ,
+    second_name TEXT NOT NULL ,
+    age INTEGER
+    )
+
+
+CREATE UNIQUE INDEX full_name ON HomeWork(first_name, second_name)
+
+INSERT INTO HomeWork(first_name, second_name, age) VALUES ('Andrii', 'Tkachenko', 23)
+INSERT INTO HomeWork(first_name, second_name, age) VALUES ('Andrii', 'Tkach', 23)
+INSERT INTO HomeWork(first_name, second_name) VALUES ('Pavlo', 'Tichina')
+INSERT INTO HomeWork(first_name, second_name, age) VALUES ('Volodimir', 'Velikii', 52)
+INSERT INTO HomeWork(first_name, second_name, age) VALUES ('Valeria', 'Prekrasna', 20)
+INSERT INTO HomeWork(first_name, second_name) VALUES ('Stanislav', 'Vlasienko')
+INSERT INTO HomeWork(first_name, second_name, age) VALUES ('Oleg', 'Tkachenko', 33)
