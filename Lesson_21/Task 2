@@ -1,0 +1,3 @@
+
+SELECT COUNT(*) AS age_more_than_30 FROM HomeWork WHERE age > 30
+

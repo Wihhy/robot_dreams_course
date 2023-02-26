@@ -1,0 +1,3 @@
+
+SELECT age, COUNT(*) AS users FROM HomeWork WHERE age > 30
+GROUP BY age

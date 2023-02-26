@@ -1,0 +1,2 @@
+
+SELECT * FROM HomeWork WHERE age > 30
