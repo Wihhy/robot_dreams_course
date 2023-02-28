@@ -1,5 +1,5 @@
 
-SELECT age, COUNT(*) AS users FROM HomeWork WHERE age > 30
+SELECT age, COUNT(*) AS users FROM HomeWork
 GROUP BY age
 HAVING users > 1
-ORDER BY age asc, users desc
+ORDER BY users desc, age asc
