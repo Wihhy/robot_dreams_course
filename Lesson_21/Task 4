@@ -1,0 +1,4 @@
+
+SELECT age, COUNT(*) AS users FROM HomeWork
+GROUP BY age
+ORDER BY users desc, age asc
