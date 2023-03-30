@@ -7,13 +7,13 @@ LATITUDE = ''
 LONGITUDE = ''
 
 
-# Приймає від користувача назву міста та записує цю назву у глобальну змінну city
+# Приймає від користувача назву міста та записує цю назву у глобальну змінну CITY
 def take_city():
     global CITY
     CITY = input('Напишіть місто для якого ви хочете отримати погоду у форматі "Kharkiv":\n')
 
 
-# Виконує пошук міста зв переданою назвою, перепитує у користувача, та записує координати
+# Виконує пошук міста за назвою, перепитує у користувача, та записує координати
 def search_city():
     search = requests.get(url=f'{URL_FOR_SEARCH}{CITY}')
     result = search.json()['results']
@@ -27,7 +27,7 @@ def search_city():
             break
 
 
-# Родить запит поточної погоди за визначеними координатами і друкує її у консоль
+# Робить запит поточної погоди за визначеними координатами і друкує її у консоль
 def request_weather():
     weather_response = requests.get(url=f'{URL_FOR_WEATHER}?latitude={LATITUDE}&longitude={LONGITUDE}&current_weather=true')
     weather = weather_response.json()
