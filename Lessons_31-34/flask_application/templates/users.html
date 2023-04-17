@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="header">
+    <h1>Hello, {{username}}</h1>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+    <h1>Users</h1>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+    </tr>
+    {% for i in range(0, size) %}
+    {% set user = users_list[i-1] %}
+    <tr>
+        <td>{{ i+1 }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.age }}</td>
+    </tr>
+    {% endfor %}
+
+    </table>
+</body>
+</html>

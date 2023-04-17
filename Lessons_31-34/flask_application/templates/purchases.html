@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchases</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="header">
+    <h1>Hello, {{username}}</h1>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+    <h1>Purchases</h1>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Book ID</th>
+        <th>Book Title</th>
+    </tr>
+    {% for i in range(0, size) %}
+    {% set purchase = purchases_list[i-1] %}
+    <tr>
+        <td>{{ i+1 }}</td>
+        <td>{{ purchase.user_id }}</td>
+        <td>{{ purchase.user_name }}</td>
+        <td>{{ purchase.book_id }}</td>
+        <td>{{ purchase.book_title }}</td>
+    </tr>
+    {% endfor %}
+
+    </table>
+</body>
+</html>

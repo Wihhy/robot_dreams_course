@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>User by ID</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
@@ -10,18 +10,24 @@
     <h1>Hello, {{username}}</h1>
     <a href="/logout" class="logout-btn">Logout</a>
 </div>
-    <h1>Users</h1>
+
+<div>
+    <h1>User</h1>
     <table>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
         </tr>
-        {% for key, value in users_dict.items() %}
         <tr>
-            <td>{{ key }}.</td>
-            <td>{{ value }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.age }}</td>
         </tr>
-        {% endfor %}
     </table>
+</div>
+
 </body>
 </html>
