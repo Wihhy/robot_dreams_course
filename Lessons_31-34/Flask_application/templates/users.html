@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="header">
+    <h1>Hello, {{username}}</h1>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        {% for key, value in users_dict.items() %}
+        <tr>
+            <td>{{ key }}.</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
