@@ -18,10 +18,9 @@
         <th>Last Name</th>
         <th>Age</th>
     </tr>
-    {% for i in range(0, size) %}
-    {% set user = users_list[i-1] %}
+    {% for user in all_users %}
     <tr>
-        <td>{{ i+1 }}</td>
+        <td>{{ user.id }}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.age }}</td>

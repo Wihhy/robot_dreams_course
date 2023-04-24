@@ -3,7 +3,6 @@ import re
 from __init__ import app, db
 from flask import redirect, url_for, request, abort, render_template, session
 import logging
-from random import randint, choices
 from templates import *
 from models import *
 
@@ -22,16 +21,9 @@ def users():
         return redirect(url_for('login'))
 
     if request.method == 'GET':
-        all_users = db.session.execute(db.select(User)).scalars()
-        users_list = []
-        for item in all_users:
-            user_dict = {}
-            user_dict['first_name'] = item.first_name
-            user_dict['last_name'] = item.last_name
-            user_dict['age'] = item.age
-            users_list.append(user_dict)
-        size = int(request.args.get('size')) if request.args.get('size') else len(users_list)
-        return render_template('users.html', users_list=users_list, size=size, username=session.get('username'))
+        size = int(request.args.get('size')) if request.args.get('size') else 1000000
+        all_users = db.session.execute(db.select(User).limit(size)).scalars()
+        return render_template('users.html', all_users=all_users, username=session.get('username'))
 
     elif request.method == 'POST':
         content_type = request.headers['Content-Type']
@@ -72,17 +64,9 @@ def books():
         return redirect(url_for('login'))
 
     if request.method == 'GET':
-        all_books = db.session.execute(db.select(Book)).scalars()
-        books_list = []
-        for item in all_books:
-            book_dict = {}
-            book_dict['title'] = item.title
-            book_dict['author'] = item.author
-            book_dict['year'] = item.year
-            book_dict['price'] = item.price
-            books_list.append(book_dict)
-        size = int(request.args.get('size')) if request.args.get('size') else len(books_list)
-        return render_template('books.html', books_list=books_list, size=size, username=session.get('username'))
+        size = int(request.args.get('size')) if request.args.get('size') else 1000000
+        all_books = db.session.execute(db.select(Book).limit(size)).scalars()
+        return render_template('books.html', all_books=all_books, size=size, username=session.get('username'))
 
     elif request.method == 'POST':
         content_type = request.headers['Content-Type']
@@ -121,21 +105,13 @@ def books_title(book_id):
 
 @app.route('/purchases', methods=['GET', 'POST'])
 def purchases():
-    # if session.get('username') is None:
-    #     return redirect(url_for('login'))
+    if session.get('username') is None:
+        return redirect(url_for('login'))
 
     if request.method == 'GET':
-        all_purchases = db.session.execute(db.select(Purchase)).scalars()
-        purchases_list = []
-        for item in all_purchases:
-            purchase_dict = {}
-            purchase_dict['user_id'] = item.user_id
-            purchase_dict['user_name'] = item.user.first_name
-            purchase_dict['book_id'] = item.book_id
-            purchase_dict['book_title'] = item.book.title
-            purchases_list.append(purchase_dict)
-        size = int(request.args.get('size')) if request.args.get('size') else len(purchases_list)
-        return render_template('purchases.html', purchases_list=purchases_list, size=size,
+        size = int(request.args.get('size')) if request.args.get('size') else 1000000
+        all_purchases = db.session.execute(db.select(Purchase).limit(size)).scalars()
+        return render_template('purchases.html', all_purchases=all_purchases, size=size,
                                username=session.get('username'))
 
     elif request.method == 'POST':
@@ -146,20 +122,24 @@ def purchases():
             data = request.form
         else:
             return 'Forbidden content type', 400
+
         user_id = data.get('user_id')
         if not User.query.get(user_id):
             return f"User with ID {user_id} is not found"
+
         book_id = data.get('book_id')
         if not Book.query.get(book_id):
             return f"Book with ID {book_id} is not found"
 
-        user = Purchase(
+        purchase = Purchase(
             user_id=user_id,
             book_id=book_id,
         )
-        db.session.add(user)
+        db.session.add(purchase)
         db.session.commit()
         return 'ok', 201
+        # else:
+        #     return 'not ok', 400
     else:
         return 'Forbidden request method', 405
 
