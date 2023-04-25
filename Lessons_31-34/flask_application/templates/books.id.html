@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book by ID</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="header">
+    <h1>Hello, {{username}}</h1>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+    <div>
+        <h1>Book by ID</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.year }}</td>
+            <td>{{ book.price }}</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
