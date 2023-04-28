@@ -8,5 +8,8 @@ class Purchase(models.Model):
     user = models.ForeignKey(User, related_name='users', on_delete=models.CASCADE)
     book = models.ForeignKey(Book, related_name='books', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'Purchase {self.id}: by {self.user.id} user {self.book.id} book'
+
     class Meta:
         db_table = 'purchase'

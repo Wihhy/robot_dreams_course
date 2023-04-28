@@ -8,6 +8,9 @@ class Book(models.Model):
     year = models.IntegerField()
     price = models.IntegerField()
 
+    def __str__(self):
+        return f'Book {self.id}: {self.title}'
+
     class Meta:
         db_table = 'book'
         unique_together = ('title', 'author')
