@@ -9,7 +9,7 @@ class Purchase(models.Model):
     book = models.ForeignKey(Book, related_name='books', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Purchase {self.id}: by {self.user.id} user {self.book.id} book'
+        return f'Purchase {self.id}: by {self.user.first_name} user {self.book.title} book'
 
     class Meta:
         db_table = 'purchase'
