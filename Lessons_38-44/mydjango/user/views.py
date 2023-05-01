@@ -1,12 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 from .models import User
 
 
-def users(request):
-    return HttpResponse('Hello, users!')
+class AllUserView(ListView):
+    model = User
 
 
-def all_users(request):
-    data = User.objects.all().values()
-    return JsonResponse(list(data), safe=False)
+class UserView(DetailView):
+    model = User
+
+
+class UserCreateView(CreateView):
+    model = User
+    fields = 'first_name', 'last_name', 'age'
+    success_url = reverse_lazy('user-list')
+    template_name = 'user/user_create.html'
