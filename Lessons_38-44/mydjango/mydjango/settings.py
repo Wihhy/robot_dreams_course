@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'book.apps.BookConfig',
     'purchase.apps.PurchaseConfig',
-    'bootstrap5'
-
+    'bootstrap5',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
