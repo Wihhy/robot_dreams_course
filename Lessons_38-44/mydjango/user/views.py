@@ -5,11 +5,13 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import User
 from .serializers import UserSerializer
 from rest_framework import viewsets
+from .tasks import printer, purchase_counter
 from rest_framework.pagination import PageNumberPagination
 
 
 class AllUserView(ListView):
     model = User
+
 
 
 class UserView(DetailView):
@@ -33,3 +35,5 @@ class UserViewSet(viewsets.ModelViewSet):
     pagination_class = UserPagination
     filterset_fields = ['first_name', 'last_name', 'age']
     ordering_fields = ['first_name', 'last_name', 'age']
+    printer()
+    purchase_counter(2)
