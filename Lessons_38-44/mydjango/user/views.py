@@ -13,7 +13,6 @@ class AllUserView(ListView):
     model = User
 
 
-
 class UserView(DetailView):
     model = User
 
@@ -35,5 +34,9 @@ class UserViewSet(viewsets.ModelViewSet):
     pagination_class = UserPagination
     filterset_fields = ['first_name', 'last_name', 'age']
     ordering_fields = ['first_name', 'last_name', 'age']
-    printer()
-    purchase_counter(2)
+
+
+def celery(request):
+    printer.delay()
+    purchase_counter.delay(1)
+    return HttpResponse('Hello, users!')
