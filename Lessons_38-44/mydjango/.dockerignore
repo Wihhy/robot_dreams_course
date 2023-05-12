@@ -1,0 +1,4 @@
+.env
+celerybeat-schedule.db
+db.sqlite3
+.dockerignore

@@ -1,0 +1,4 @@
+flask_application_venv
+.env
+.gitignore
+instance
